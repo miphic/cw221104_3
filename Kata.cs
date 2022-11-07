@@ -19,54 +19,47 @@ namespace CW221104_3_fibonachi
         static psefibo()
         {
             psefibo.a = new int[1000000009];
-            a.Add(1);
-            a.Add(1);
-            a.Add(2);
-
+            a[0] = 1;
+            a[1] = 1;
+            a[2] = 2;
+            count = 3;
             var t0 = DateTime.Now;
-            psefibo.prepare(100000000);
-            var t1 = DateTime.Now;
-            psefibo.prepare(200000000);
-            var t2 = DateTime.Now;
-            psefibo.prepare(1000000009);
-            var t3 = DateTime.Now;
-            Console.WriteLine(
-$@"100000000:   {t1.Subtract(t0)}  
-200000000:   {t2.Subtract(t1)}
-1000000009:  {t3.Subtract(t0)}");
-
-        }
-
-        static void prepare(int count)
-        {
-            int c;
             int o = 3;
-            while(psefibo.count < count)
+            for (var i = psefibo.count; i < psefibo.a.Length; ++i)
             {
-                psefibo.a[psefibo.count] = psefibo.a[psefibo.count - 1] + psefibo.a[psefibo.count - 2];
-                if (o > 20)
-                {
-                    psefibo.a[psefibo.count] %= 10; /// = c % 10;
-                    psefibo.a[psefibo.count - 1] %= 10;
-                    o = 0;
-                }
-                psefibo.count++;
-                o++;
+                psefibo.a[i] = psefibo.a[i - 1] + psefibo.a[i - 2];
+                psefibo.a[i] %= 10;
+                //if (o > 22)
+                //{
+                //    psefibo.a[i] %= 10;
+                //    psefibo.a[i - 1] %= 10;
+                //    o = 0;
+                //}
+                ++o;
             }
-            
+            psefibo.count = psefibo.a.Length;
+            var t3 = DateTime.Now;
+            Console.WriteLine($@"1000000009:  {t3.Subtract(t0)}");
         }
+        
 
         public psefibo(int count)
         {
-            int c;
-            while (psefibo.count < count)
-            {
-                c = a[psefibo.count - 1] + a[psefibo.count - 2];
-                if (c > 9)
-                    a.Add(c % 10);
-                else
-                    a.Add(c);
-            }
+            int o = 3;
+            
+                for (var i = psefibo.count; i < count; ++i )
+                {
+                    psefibo.a[i] = psefibo.a[i - 1] + psefibo.a[i - 2];
+                    if (o > 22)
+                    {
+                        psefibo.a[i] %= 10;
+                        psefibo.a[i - 1] %= 10;
+                        o = 0;
+                    }
+                    ++o;
+                }
+                psefibo.count = psefibo.a.Length;
+            //}
         }
         public int LastFibDigit(int n) => psefibo.a[n - 1];
     }
