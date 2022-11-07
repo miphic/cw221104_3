@@ -7,18 +7,18 @@ namespace CW221104_3_fibonachi
     {
         static public void Add(this Array obj, int k)
         {            
-            psefibo.a[psefibo.count]= (short)k;
+            psefibo.a[psefibo.count]= (ushort)k;
             psefibo.count++;
         }
     }
 
-    public class psefibo 
+    public class psefibo
     {
-        public static short[] a;
-        public static int count;
+        public static ushort[] a;
+        public static uint count;
         static psefibo()
         {
-            psefibo.a = new short[1000000009];
+            psefibo.a = new ushort[1000000009];
             a[0] = 1;
             a[1] = 1;
             a[2] = 2;
@@ -27,8 +27,8 @@ namespace CW221104_3_fibonachi
             int o = 3;
             for (var i = psefibo.count; i < psefibo.a.Length; ++i)
             {
-                psefibo.a[i] = (short)( psefibo.a[i - 1] + psefibo.a[i - 2]);
-                if (o > 12)
+                psefibo.a[i] = (ushort)(psefibo.a[i - 1] + psefibo.a[i - 2]);
+                if (o > 15)
                 {
                     psefibo.a[i] %= 10;
                     psefibo.a[i - 1] %= 10;
@@ -36,11 +36,11 @@ namespace CW221104_3_fibonachi
                 }
                 ++o;
             }
-            psefibo.count = psefibo.a.Length;
+            psefibo.count = (uint)psefibo.a.Length;
             var t3 = DateTime.Now;
             Console.WriteLine($@"1000000009:  {t3.Subtract(t0)}");
         }
-        
+
 
         public psefibo(int count)
         {
@@ -48,8 +48,8 @@ namespace CW221104_3_fibonachi
 
             for (var i = psefibo.count; i < count; ++i)
             {
-                psefibo.a[i] = (short)(psefibo.a[i - 1] + psefibo.a[i - 2]);
-                if (o > 10)
+                psefibo.a[i] = (byte)(psefibo.a[i - 1] + psefibo.a[i - 2]);
+                if (o > 100)
                 {
                     psefibo.a[i] %= 10;
                     psefibo.a[i - 1] %= 10;
@@ -57,7 +57,7 @@ namespace CW221104_3_fibonachi
                 }
                 ++o;
             }
-            psefibo.count = psefibo.a.Length;
+            psefibo.count = (ushort)psefibo.a.Length;
         }
         public int LastFibDigit(int n) => (int)psefibo.a[n - 1];
     }
@@ -65,9 +65,9 @@ namespace CW221104_3_fibonachi
     {
         public static int LastFibDigit(int n)
         {
-            var re =  (new psefibo(n)).LastFibDigit(n);
+            var re = (new psefibo(n)).LastFibDigit(n);
             if (re > 9) re %= 10;
-            return re; 
+            return re;
         }
     }
 }
