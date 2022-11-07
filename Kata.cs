@@ -7,18 +7,18 @@ namespace CW221104_3_fibonachi
     {
         static public void Add(this Array obj, int k)
         {            
-            psefibo.a[psefibo.count]= k;
+            psefibo.a[psefibo.count]= (short)k;
             psefibo.count++;
         }
     }
 
     public class psefibo 
     {
-        public static int[] a;
+        public static short[] a;
         public static int count;
         static psefibo()
         {
-            psefibo.a = new int[1000000009];
+            psefibo.a = new short[1000000009];
             a[0] = 1;
             a[1] = 1;
             a[2] = 2;
@@ -27,8 +27,8 @@ namespace CW221104_3_fibonachi
             int o = 3;
             for (var i = psefibo.count; i < psefibo.a.Length; ++i)
             {
-                psefibo.a[i] = psefibo.a[i - 1] + psefibo.a[i - 2];
-                if (o > 22)
+                psefibo.a[i] = (short)( psefibo.a[i - 1] + psefibo.a[i - 2]);
+                if (o > 12)
                 {
                     psefibo.a[i] %= 10;
                     psefibo.a[i - 1] %= 10;
@@ -45,22 +45,21 @@ namespace CW221104_3_fibonachi
         public psefibo(int count)
         {
             int o = 3;
-            
-                for (var i = psefibo.count; i < count; ++i )
+
+            for (var i = psefibo.count; i < count; ++i)
+            {
+                psefibo.a[i] = (short)(psefibo.a[i - 1] + psefibo.a[i - 2]);
+                if (o > 10)
                 {
-                    psefibo.a[i] = psefibo.a[i - 1] + psefibo.a[i - 2];
-                    if (o > 22)
-                    {
-                        psefibo.a[i] %= 10;
-                        psefibo.a[i - 1] %= 10;
-                        o = 0;
-                    }
-                    ++o;
+                    psefibo.a[i] %= 10;
+                    psefibo.a[i - 1] %= 10;
+                    o = 0;
                 }
-                psefibo.count = psefibo.a.Length;
-            //}
+                ++o;
+            }
+            psefibo.count = psefibo.a.Length;
         }
-        public int LastFibDigit(int n) => psefibo.a[n - 1];
+        public int LastFibDigit(int n) => (int)psefibo.a[n - 1];
     }
     public class Kata
     {
