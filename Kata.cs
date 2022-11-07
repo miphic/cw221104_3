@@ -28,13 +28,12 @@ namespace CW221104_3_fibonachi
             for (var i = psefibo.count; i < psefibo.a.Length; ++i)
             {
                 psefibo.a[i] = psefibo.a[i - 1] + psefibo.a[i - 2];
-                psefibo.a[i] %= 10;
-                //if (o > 22)
-                //{
-                //    psefibo.a[i] %= 10;
-                //    psefibo.a[i - 1] %= 10;
-                //    o = 0;
-                //}
+                if (o > 22)
+                {
+                    psefibo.a[i] %= 10;
+                    psefibo.a[i - 1] %= 10;
+                    o = 0;
+                }
                 ++o;
             }
             psefibo.count = psefibo.a.Length;
